@@ -51,7 +51,7 @@ export function MovieCard({
       <Link href={`/movie/${slug}`} className="absolute inset-0 z-20" aria-label={`Xem phim ${title}`} />
       
       {/* Container ảnh */}
-      <div className={cn("relative w-full aspect-[2/3] shrink-0 overflow-hidden bg-mecha-surface border-2 border-transparent transition-colors duration-300 group-hover:border-mecha-accent/50", chamferClass)}>
+      <div className={cn("relative w-full aspect-[2/3] overflow-hidden bg-mecha-surface border-2 border-transparent transition-colors duration-300 group-hover:border-mecha-accent/50", chamferClass)}>
         <Image 
           src={img} 
           alt={title} 
@@ -97,21 +97,9 @@ export function MovieCard({
          </div>
          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
       </div>
-
-      {/* Info Area - Fixed height/structure for consistency */}
-      <div className="flex flex-col items-center text-center gap-0.5 px-1 mt-1 shrink-0">
-        <h4 className="text-mecha-light text-[14px] sm:text-[15px] font-bold group-hover:text-mecha-accent transition-colors line-clamp-1 w-full leading-tight">
-          {title}
-        </h4>
-        <div className="h-4 flex items-center justify-center w-full">
-          {originName ? (
-            <span className="text-[11px] sm:text-[12px] text-gray-500 line-clamp-1 w-full font-medium">
-              {originName}
-            </span>
-          ) : (
-            <span className="h-px w-0" /> // Empty placeholder to maintain height
-          )}
-        </div>
+      <div className="flex flex-col items-start gap-1 px-1 mt-2">
+        <h4 className="text-mecha-light text-[15px] font-bold group-hover:text-mecha-accent transition-colors line-clamp-1 w-full">{title}</h4>
+        {originName && <span className="text-[13px] text-gray-500 line-clamp-1 w-full">{originName}</span>}
       </div>
     </motion.div>
   );

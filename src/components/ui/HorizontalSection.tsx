@@ -35,14 +35,14 @@ export function HorizontalSection({ title, viewAllLink, movies }: HorizontalSect
             <HorizontalMovieCard 
               key={movie._id} 
               title={movie.name} 
-              img={`${IMG_CDN_URL}${movie.thumb_url}`} 
+              img={`${IMG_CDN_URL}${movie.poster_url || movie.thumb_url}`} 
               slug={movie.slug}
               originName={movie.origin_name}
               lang={movie.lang}
               episode_current={movie.episode_current}
               time={movie.time}
               chamfer="tl-br"
-              className="w-[240px] sm:w-[280px] md:w-[320px] shrink-0"
+              className="w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] shrink-0"
             />
           ))}
         </div>

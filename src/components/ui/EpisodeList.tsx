@@ -2,7 +2,6 @@
 
 import { Play, ListOrdered } from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion, Variants } from 'framer-motion';
 import { buildWatchUrl } from '@/utils/watchUrl';
 
@@ -92,12 +91,10 @@ export function EpisodeList({
                     <div className="flex gap-3 items-center">
                       <div className="w-16 h-10 bg-black/20 rounded overflow-hidden shrink-0 relative flex items-center justify-center border border-mecha-dark/50">
                         {ep.image ? (
-                          <Image 
+                          <img 
                             src={ep.image} 
                             alt={`Tập ${ep.ep}`}
-                            fill
-                            className="object-cover"
-                            unoptimized
+                            className="w-full h-full object-cover"
                           />
                         ) : (
                           <Play size={16} fill="currentColor" />
@@ -125,12 +122,10 @@ export function EpisodeList({
                   <div className="flex gap-3 items-center">
                     <div className="w-16 h-10 bg-mecha-surface rounded overflow-hidden shrink-0 relative flex items-center justify-center group-hover:bg-mecha-accent/20 transition-colors border border-white/5 group-hover:border-mecha-accent/30">
                       {ep.image ? (
-                        <Image 
+                        <img 
                           src={ep.image} 
                           alt={`Tập ${ep.ep}`}
-                          fill
-                          className="object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-300"
-                          unoptimized
+                          className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-300"
                         />
                       ) : (
                         <Play size={16} className="text-transparent group-hover:text-mecha-accent transition-colors" fill="currentColor" />

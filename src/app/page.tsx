@@ -68,7 +68,7 @@ export default async function Home() {
                 episode_current={movie.episode_current}
                 time={movie.time}
                 chamfer="tl-br"
-                className="w-[140px] sm:w-[160px] md:w-[170px] shrink-0"
+                className="min-w-[140px] sm:min-w-[170px] md:min-w-[190px] lg:min-w-[210px] shrink-0"
               />
             ))}
           </div>
@@ -114,14 +114,14 @@ export default async function Home() {
               {seriesMovies.slice(0, 8).map((movie) => (
                 <MovieCard 
                   key={movie._id} 
-                  title={movie.name} 
-                  img={`${IMG_CDN_URL}${movie.thumb_url}`} 
-                  slug={movie.slug}
-                  originName={movie.origin_name}
-                  lang={movie.lang}
-                  episode_current={movie.episode_current}
-                  time={movie.time}
-                  chamfer="tl-br"
+              title={movie.name} 
+              img={`${IMG_CDN_URL}${movie.thumb_url}`} 
+              slug={movie.slug}
+              originName={movie.origin_name}
+              lang={movie.lang}
+              episode_current={movie.episode_current}
+              time={movie.time}
+              chamfer="tl-br"
                   className="w-full"
                 />
               ))}
@@ -144,14 +144,14 @@ export default async function Home() {
               {singleMovies.slice(0, 8).map((movie) => (
                 <MovieCard 
                   key={movie._id} 
-                  title={movie.name} 
-                  img={`${IMG_CDN_URL}${movie.thumb_url}`} 
-                  slug={movie.slug}
-                  originName={movie.origin_name}
-                  lang={movie.lang}
-                  episode_current={movie.episode_current}
-                  time={movie.time}
-                  chamfer="tl-br"
+              title={movie.name} 
+              img={`${IMG_CDN_URL}${movie.thumb_url}`} 
+              slug={movie.slug}
+              originName={movie.origin_name}
+              lang={movie.lang}
+              episode_current={movie.episode_current}
+              time={movie.time}
+              chamfer="tl-br"
                   className="w-full"
                 />
               ))}
@@ -174,14 +174,14 @@ export default async function Home() {
               {animeMovies.slice(0, 8).map((movie) => (
                 <MovieCard 
                   key={movie._id} 
-                  title={movie.name} 
-                  img={`${IMG_CDN_URL}${movie.thumb_url}`} 
-                  slug={movie.slug}
-                  originName={movie.origin_name}
-                  lang={movie.lang}
-                  episode_current={movie.episode_current}
-                  time={movie.time}
-                  chamfer="tl-br"
+              title={movie.name} 
+              img={`${IMG_CDN_URL}${movie.thumb_url}`} 
+              slug={movie.slug}
+              originName={movie.origin_name}
+              lang={movie.lang}
+              episode_current={movie.episode_current}
+              time={movie.time}
+              chamfer="tl-br"
                   className="w-full"
                 />
               ))}

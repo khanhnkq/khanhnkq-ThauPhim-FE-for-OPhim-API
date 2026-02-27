@@ -51,7 +51,7 @@ export function HorizontalMovieCard({
       <Link href={`/movie/${slug}`} className="absolute inset-0 z-20" aria-label={`Xem phim ${title}`} />
       
       {/* Container ảnh Landscape */}
-      <div className={cn("relative w-full aspect-video shrink-0 overflow-hidden bg-mecha-surface border-2 border-transparent transition-colors duration-300 group-hover:border-mecha-accent/50", chamferClass)}>
+      <div className={cn("relative w-full aspect-video overflow-hidden bg-mecha-surface border-2 border-transparent transition-colors duration-300 group-hover:border-mecha-accent/50", chamferClass)}>
         <Image 
           src={img} 
           alt={title} 
@@ -86,7 +86,7 @@ export function HorizontalMovieCard({
             <>
               {lang && (
                 <div className={`px-1.5 py-0.5 rounded-sm text-[10px] font-bold text-white uppercase tracking-wider whitespace-nowrap shadow-md ${isThuyetMinh ? 'bg-emerald-600/90' : 'bg-gray-800/90'}`}>
-                   {lang} {episode_current && <span className="ml-0.5">{episode_current}</span>}
+                  {lang} {episode_current && <span className="ml-0.5">{episode_current}</span>}
                 </div>
               )}
               {!lang && episode_current && (
@@ -101,19 +101,9 @@ export function HorizontalMovieCard({
       </div>
 
       {/* Info -> Left Aligned để matching với ảnh landscape */}
-      <div className="flex flex-col items-start gap-0.5 px-1 mt-1 shrink-0">
-        <h4 className="text-mecha-light text-[14px] sm:text-[15px] font-bold group-hover:text-mecha-accent transition-colors line-clamp-1 w-full leading-tight">
-          {title}
-        </h4>
-        <div className="h-4 flex items-center w-full">
-          {originName ? (
-            <span className="text-[11px] sm:text-[12px] text-gray-500 line-clamp-1 w-full font-medium">
-              {originName}
-            </span>
-          ) : (
-            <span className="h-px w-0" /> // Empty placeholder to maintain height
-          )}
-        </div>
+      <div className="flex flex-col items-start gap-1 px-1 mt-1">
+        <h4 className="text-mecha-light text-[15px] font-bold group-hover:text-mecha-accent transition-colors line-clamp-1 w-full">{title}</h4>
+        {originName && <span className="text-[13px] text-gray-500 line-clamp-1 w-full">{originName}</span>}
       </div>
     </motion.div>
   );
