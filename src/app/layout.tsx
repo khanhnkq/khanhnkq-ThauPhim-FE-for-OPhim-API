@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ThauPhim - Phim Hay Cả Thau",
     description: "Tuyển tập những bộ phim mới nhất, xem phim online miễn phí chất lượng cao tại ThauPhim.",
-    url: "https://thauphim.com",
+    url: "thauphim-neon.vercel.app",
     siteName: "ThauPhim",
     images: [
       {
