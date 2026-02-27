@@ -47,15 +47,15 @@ function getPageRange(current: number, total: number, maxVisible: number): numbe
 }
 
 const btnBase =
-  'flex items-center justify-center min-w-[40px] h-10 text-sm font-bold tracking-wider uppercase transition-all duration-200';
+  'flex items-center justify-center min-w-[36px] sm:min-w-[40px] h-9 sm:h-10 text-xs sm:text-sm font-bold tracking-wider uppercase transition-all duration-200';
 const btnActive =
-  'bg-mecha-accent text-mecha-dark border-2 border-mecha-accent shadow-[0_0_12px_rgba(254,201,61,0.4)]';
+  'bg-mecha-accent text-mecha-dark border-2 border-mecha-accent shadow-[0_0_15px_rgba(254,201,61,0.4)] clip-chamfer-tl-br';
 const btnNormal =
-  'bg-mecha-surface/60 text-mecha-light border border-white/10 hover:bg-mecha-accent/20 hover:text-mecha-accent hover:border-mecha-accent/40';
+  'bg-mecha-surface/60 text-mecha-light border border-white/10 hover:bg-mecha-accent/20 hover:text-mecha-accent hover:border-mecha-accent/40 rounded';
 const btnDisabled =
-  'bg-mecha-surface/30 text-gray-600 border border-white/5 cursor-not-allowed pointer-events-none';
+  'bg-mecha-surface/30 text-gray-700 border border-white/5 cursor-not-allowed pointer-events-none rounded';
 
-export function Pagination({ currentPage, totalPages, basePath, searchParams, maxVisible = 7 }: PaginationProps) {
+export function Pagination({ currentPage, totalPages, basePath, searchParams, maxVisible = 5 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
   const pages = getPageRange(currentPage, totalPages, maxVisible);
@@ -63,30 +63,30 @@ export function Pagination({ currentPage, totalPages, basePath, searchParams, ma
   const isLast = currentPage >= totalPages;
 
   return (
-    <nav className="flex items-center justify-center gap-1.5 mt-12" aria-label="Pagination">
-      {/* First page */}
+    <nav className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-8 md:mt-12" aria-label="Pagination">
+      {/* First page (Hide on very small screens to save space) */}
       {currentPage > 3 && totalPages > maxVisible && (
-        <Link href={buildPageUrl(basePath, 1, searchParams)} className={`${btnBase} ${btnNormal} px-2 rounded clip-chamfer-tl`}>
-          <ChevronsLeft size={16} />
+        <Link href={buildPageUrl(basePath, 1, searchParams)} className={`${btnBase} ${btnNormal} hidden sm:flex px-2`}>
+          <ChevronsLeft size={16} className="sm:w-5 sm:h-5" />
         </Link>
       )}
 
       {/* Previous */}
       {isFirst ? (
-        <div className={`${btnBase} ${btnDisabled} px-3 rounded`}>
-          <ChevronLeft size={16} />
+        <div className={`${btnBase} ${btnDisabled} px-2 sm:px-3`}>
+          <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
         </div>
       ) : (
-        <Link href={buildPageUrl(basePath, currentPage - 1, searchParams)} className={`${btnBase} ${btnNormal} px-3 rounded`}>
-          <ChevronLeft size={16} />
+        <Link href={buildPageUrl(basePath, currentPage - 1, searchParams)} className={`${btnBase} ${btnNormal} px-2 sm:px-3`}>
+          <ChevronLeft size={16} className="sm:w-5 sm:h-5" />
         </Link>
       )}
 
       {/* Page numbers */}
       {pages[0] > 1 && (
         <>
-          <Link href={buildPageUrl(basePath, 1, searchParams)} className={`${btnBase} ${btnNormal} rounded`}>1</Link>
-          {pages[0] > 2 && <span className="text-gray-500 px-1">…</span>}
+          <Link href={buildPageUrl(basePath, 1, searchParams)} className={`${btnBase} ${btnNormal}`}>1</Link>
+          {pages[0] > 2 && <span className="text-gray-600 px-0.5 sm:px-1">…</span>}
         </>
       )}
 
@@ -94,7 +94,7 @@ export function Pagination({ currentPage, totalPages, basePath, searchParams, ma
         <Link
           key={p}
           href={buildPageUrl(basePath, p, searchParams)}
-          className={`${btnBase} ${p === currentPage ? btnActive : btnNormal} rounded font-mono`}
+          className={`${btnBase} ${p === currentPage ? btnActive : btnNormal} font-mono`}
           aria-current={p === currentPage ? 'page' : undefined}
         >
           {p}
@@ -103,26 +103,26 @@ export function Pagination({ currentPage, totalPages, basePath, searchParams, ma
 
       {pages[pages.length - 1] < totalPages && (
         <>
-          {pages[pages.length - 1] < totalPages - 1 && <span className="text-gray-500 px-1">…</span>}
-          <Link href={buildPageUrl(basePath, totalPages, searchParams)} className={`${btnBase} ${btnNormal} rounded`}>{totalPages}</Link>
+          {pages[pages.length - 1] < totalPages - 1 && <span className="text-gray-600 px-0.5 sm:px-1">…</span>}
+          <Link href={buildPageUrl(basePath, totalPages, searchParams)} className={`${btnBase} ${btnNormal}`}>{totalPages}</Link>
         </>
       )}
 
       {/* Next */}
       {isLast ? (
-        <div className={`${btnBase} ${btnDisabled} px-3 rounded`}>
-          <ChevronRight size={16} />
+        <div className={`${btnBase} ${btnDisabled} px-2 sm:px-3`}>
+          <ChevronRight size={16} className="sm:w-5 sm:h-5" />
         </div>
       ) : (
-        <Link href={buildPageUrl(basePath, currentPage + 1, searchParams)} className={`${btnBase} ${btnNormal} px-3 rounded`}>
-          <ChevronRight size={16} />
+        <Link href={buildPageUrl(basePath, currentPage + 1, searchParams)} className={`${btnBase} ${btnNormal} px-2 sm:px-3`}>
+          <ChevronRight size={16} className="sm:w-5 sm:h-5" />
         </Link>
       )}
 
-      {/* Last page */}
+      {/* Last page (Hide on very small screens to save space) */}
       {currentPage < totalPages - 2 && totalPages > maxVisible && (
-        <Link href={buildPageUrl(basePath, totalPages, searchParams)} className={`${btnBase} ${btnNormal} px-2 rounded clip-chamfer-br`}>
-          <ChevronsRight size={16} />
+        <Link href={buildPageUrl(basePath, totalPages, searchParams)} className={`${btnBase} ${btnNormal} hidden sm:flex px-2`}>
+          <ChevronsRight size={16} className="sm:w-5 sm:h-5" />
         </Link>
       )}
     </nav>
