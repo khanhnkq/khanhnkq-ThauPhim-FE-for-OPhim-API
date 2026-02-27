@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mecha Stream - Cockpit Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Orbitron:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#facc42",
+                        "primary-glow": "rgba(250, 204, 66, 0.5)",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1B1B1B",
+                        "surface-dark": "#2A2A2A",
+                        "surface-darker": "#151515",
+                        "accent-gray": "#3A3A3A",
+                    },
+                    fontFamily: {
+                        "display": ["Orbitron", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">.clip-corner-br {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+        }
+        .clip-chamfer {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }.glow-active {
+            box-shadow: 0 0 15px theme('colors.primary-glow');
+        }::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B1B1B; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3A3A3A; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #facc42; 
+        }details summary::-webkit-details-marker {
+            display: none;
+        }
+        details summary {
+            list-style: none;
+        }
+        details[open] summary .expand-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-body text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 w-full border-b border-primary/20 bg-background-dark/95 backdrop-blur-sm">
+<div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-10 h-10 bg-primary/10 rounded clip-chamfer border border-primary/30">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+</div>
+<h1 class="font-display font-bold text-xl tracking-wider text-white">MECHA<span class="text-primary">STREAM</span></h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-display text-sm text-primary tracking-widest uppercase border-b-2 border-primary pb-1" href="#">Cockpit</a>
+<a class="font-display text-sm text-slate-400 hover:text-white tracking-widest uppercase transition-colors" href="#">Log</a>
+<a class="font-display text-sm text-slate-400 hover:text-white tracking-widest uppercase transition-colors" href="#">Database</a>
+<a class="font-display text-sm text-slate-400 hover:text-white tracking-widest uppercase transition-colors" href="#">Armory</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center bg-surface-dark border border-white/10 rounded px-3 py-1.5 gap-2">
+<span class="material-symbols-outlined text-primary text-sm">wifi</span>
+<span class="font-display text-xs text-primary/80">ONLINE</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark border border-white/10 hover:border-primary/50 hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-orange-600 p-[2px]">
+<div class="w-full h-full rounded-full bg-background-dark overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-white">person</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1600px] mx-auto px-4 py-4 md:px-6 md:py-6 flex flex-col gap-6">
+<div class="w-full">
+<div class="relative w-full aspect-[21/9] lg:aspect-video bg-black rounded-lg border-2 border-surface-dark overflow-hidden shadow-2xl ring-1 ring-white/5 group">
+<div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary z-20"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary z-20"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary z-20"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary z-20"></div>
+<div class="absolute inset-0 bg-surface-darker flex flex-col items-center justify-center" style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1612440955948-26284f1b88e0?q=80&amp;w=2670&amp;auto=format&amp;fit=crop'); background-size: cover; background-position: center;">
+<button class="w-24 h-24 bg-primary/90 hover:bg-primary text-black rounded-full flex items-center justify-center transform hover:scale-110 transition-all shadow-[0_0_40px_rgba(250,204,66,0.4)] z-10 pl-1">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-between opacity-80">
+<div class="flex justify-between items-start">
+<div class="bg-black/50 backdrop-blur px-3 py-1 rounded text-xs font-display text-primary border border-primary/20">REC ● 00:24:18</div>
+<div class="bg-black/50 backdrop-blur px-3 py-1 rounded text-xs font-display text-white border border-white/20 uppercase">Tactical View Active</div>
+</div>
+<div class="w-full space-y-3 pointer-events-auto">
+<div class="w-full h-1.5 bg-white/20 rounded-full overflow-hidden cursor-pointer">
+<div class="h-full w-[35%] bg-primary shadow-[0_0_15px_#facc42]"></div>
+</div>
+<div class="flex justify-between items-center text-white/80">
+<div class="flex gap-6">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">play_arrow</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">volume_up</span></button>
+<span class="font-display text-sm self-center">08:42 / 24:15</span>
+</div>
+<div class="flex gap-6">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">settings</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">fullscreen</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pb-4 border-b border-white/10">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-display font-bold bg-primary text-background-dark">NEW</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-display font-bold bg-white/10 text-slate-300 border border-white/10">HD</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-display font-bold bg-white/10 text-slate-300 border border-white/10">TV-14</span>
+</div>
+<h1 class="text-3xl font-display font-bold text-white mb-1 uppercase tracking-tight">Mobile Suit Gundam Wing: Endless Waltz</h1>
+<p class="text-slate-400 text-lg font-light">Episode 5: <span class="text-slate-200">The Glass Kingdom</span></p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-2 bg-surface-dark border border-white/10 hover:border-primary hover:text-primary text-white rounded clip-chamfer transition-all">
+<span class="material-symbols-outlined text-lg">thumb_up</span>
+<span class="font-display text-sm font-bold uppercase">Like</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2 bg-surface-dark border border-white/10 hover:border-primary hover:text-primary text-white rounded clip-chamfer transition-all">
+<span class="material-symbols-outlined text-lg">add</span>
+<span class="font-display text-sm font-bold uppercase">List</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2 bg-surface-dark border border-white/10 hover:border-primary hover:text-primary text-white rounded clip-chamfer transition-all">
+<span class="material-symbols-outlined text-lg">share</span>
+<span class="font-display text-sm font-bold uppercase">Share</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+<details class="group bg-surface-dark/40 border border-white/5 rounded-lg overflow-hidden" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">format_list_numbered</span>
+<h3 class="text-white font-display text-sm uppercase tracking-widest font-bold">Mission List (Episodes)</h3>
+</div>
+<span class="material-symbols-outlined expand-icon transition-transform text-slate-500">expand_more</span>
+</summary>
+<div class="p-4 bg-surface-darker/30">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-2">
+<div class="group/ep relative bg-primary text-background-dark p-3 clip-corner-br hover:bg-primary/90 transition-all cursor-pointer glow-active">
+<div class="flex gap-3 items-center">
+<div class="w-16 h-10 bg-black/20 rounded overflow-hidden shrink-0 relative flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<span class="font-display font-bold text-sm">EP 05</span>
+<span class="font-mono text-xs opacity-70">24:15</span>
+</div>
+<p class="text-xs truncate font-medium opacity-90">The Glass Kingdom</p>
+</div>
+</div>
+</div>
+<div class="group/ep relative bg-surface-darker p-3 clip-corner-br border border-white/5 hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer">
+<div class="flex gap-3 items-center">
+<div class="w-16 h-10 bg-slate-800 rounded overflow-hidden shrink-0 relative"></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<span class="font-display font-bold text-slate-300 group-hover/ep:text-primary transition-colors text-sm">EP 06</span>
+<span class="font-mono text-xs text-slate-500">23:50</span>
+</div>
+<p class="text-xs truncate text-slate-500 group-hover/ep:text-slate-300">The Party Night</p>
+</div>
+</div>
+</div>
+<div class="group/ep relative bg-surface-darker p-3 clip-corner-br border border-white/5 hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer">
+<div class="flex gap-3 items-center">
+<div class="w-16 h-10 bg-slate-800 rounded overflow-hidden shrink-0 relative"></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<span class="font-display font-bold text-slate-300 group-hover/ep:text-primary transition-colors text-sm">EP 07</span>
+<span class="font-mono text-xs text-slate-500">24:02</span>
+</div>
+<p class="text-xs truncate text-slate-500 group-hover/ep:text-slate-300">Scenario for Bloodshed</p>
+</div>
+</div>
+</div>
+<div class="group/ep relative bg-surface-darker p-3 clip-corner-br border border-white/5 hover:border-primary/50 hover:bg-white/5 transition-all cursor-pointer">
+<div class="flex gap-3 items-center">
+<div class="w-16 h-10 bg-slate-800 rounded overflow-hidden shrink-0 relative"></div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline">
+<span class="font-display font-bold text-slate-300 group-hover/ep:text-primary transition-colors text-sm">EP 08</span>
+<span class="font-mono text-xs text-slate-500">23:45</span>
+</div>
+<p class="text-xs truncate text-slate-500 group-hover/ep:text-slate-300">The Treze Assassination</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-surface-dark/40 border border-white/5 rounded-lg overflow-hidden" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">sensors</span>
+<h3 class="text-white font-display text-sm uppercase tracking-widest font-bold">Signal Source (Servers)</h3>
+</div>
+<span class="material-symbols-outlined expand-icon transition-transform text-slate-500">expand_more</span>
+</summary>
+<div class="p-4 bg-surface-darker/30">
+<div class="grid grid-cols-2 gap-3">
+<button class="group relative bg-surface-darker border-l-4 border-primary p-3 flex items-center justify-between hover:bg-white/5 transition-all clip-chamfer active:scale-[0.98]">
+<span class="font-display font-bold text-white group-hover:text-primary transition-colors text-sm">SERVER ALPHA</span>
+<span class="material-symbols-outlined text-primary text-sm">wifi_tethering</span>
+</button>
+<button class="group relative bg-surface-darker border-l-4 border-transparent hover:border-slate-500 p-3 flex items-center justify-between hover:bg-white/5 transition-all clip-chamfer active:scale-[0.98]">
+<span class="font-display font-bold text-slate-400 group-hover:text-white transition-colors text-sm">SERVER BETA</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white text-sm">wifi_off</span>
+</button>
+<button class="group relative bg-surface-darker border-l-4 border-transparent hover:border-slate-500 p-3 flex items-center justify-between hover:bg-white/5 transition-all clip-chamfer active:scale-[0.98]">
+<span class="font-display font-bold text-slate-400 group-hover:text-white transition-colors text-sm">BACKUP 01</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white text-sm">cloud</span>
+</button>
+<button class="group relative bg-surface-darker border-l-4 border-transparent hover:border-slate-500 p-3 flex items-center justify-between hover:bg-white/5 transition-all clip-chamfer active:scale-[0.98]">
+<span class="font-display font-bold text-slate-400 group-hover:text-white transition-colors text-sm">BACKUP 02</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-white text-sm">cloud</span>
+</button>
+</div>
+</div>
+</details>
+</div>
+<details class="group bg-surface-dark/40 border border-white/5 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">assignment</span>
+<h3 class="text-white font-display text-sm uppercase tracking-widest font-bold">Mission Briefing (Description)</h3>
+</div>
+<span class="material-symbols-outlined expand-icon transition-transform text-slate-500">expand_more</span>
+</summary>
+<div class="p-6 bg-surface-darker/30 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">rocket_launch</span>
+</div>
+<p class="text-slate-300 leading-relaxed max-w-4xl">
+                    Relena Peacecraft attempts to maintain peace as the colonies grow restless. Meanwhile, Heero Yuy must decide whether to reactivate his Gundam or let the world find its own path. Tensions rise as a new faction emerges from the shadows of the previous war.
+                </p>
+<div class="flex flex-wrap gap-8 mt-6">
+<div>
+<span class="block text-xs text-slate-500 font-display uppercase tracking-tighter">Genre</span>
+<span class="text-sm text-slate-200">Mecha, Sci-Fi, Drama</span>
+</div>
+<div>
+<span class="block text-xs text-slate-500 font-display uppercase tracking-tighter">Studio</span>
+<span class="text-sm text-slate-200">Sunrise</span>
+</div>
+<div>
+<span class="block text-xs text-slate-500 font-display uppercase tracking-tighter">Year</span>
+<span class="text-sm text-slate-200">1997</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-surface-dark/40 border border-white/5 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-white/5 transition-colors border-b border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">chat</span>
+<h3 class="text-white font-display text-sm uppercase tracking-widest font-bold">Comm Logs (342)</h3>
+</div>
+<span class="material-symbols-outlined expand-icon transition-transform text-slate-500">expand_more</span>
+</summary>
+<div class="p-6 bg-surface-darker/30">
+<div class="flex gap-4 mb-6">
+<div class="w-10 h-10 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400">person</span>
+</div>
+<div class="flex-1 relative">
+<input class="w-full bg-surface-darker border border-white/10 text-white px-4 py-2.5 rounded focus:border-primary focus:ring-0 focus:outline-none placeholder:text-slate-600 font-display text-sm" placeholder="Transmitting message..." type="text"/>
+<button class="absolute right-2 top-1.5 text-primary hover:text-white">
+<span class="material-symbols-outlined text-xl">send</span>
+</button>
+</div>
+</div>
+<div class="space-y-4 opacity-50 italic text-slate-500 text-sm">
+                    Connection established... receiving historical data packets...
+                </div>
+</div>
+</details>
+</div>
+<div class="mt-4 relative h-32 rounded-lg overflow-hidden border border-primary/20 group">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAz-G6OqObeX5LWsg2X_scrzwUuA0tghsDj4Cd7h_UQ8QfpgPWFmqKAMnfYZXYy51PUFbGJbAk2D2_CNzBjDu3Fg4c1M1UWQQsMhvChbS7RYN2wk301f7R5qjw5zknhGNATEqQVPPu7Sdv0-WyRSovu-5m3kojXZjPzuxgIjH2HwEqF0aH26xNcEhDH8cW5UnPRwkHUa_4tbluUxY8Lz5S7DO4ih1wKWJXJjBlhL7Rrm229zRE-PFgVXWJ7jKHlrzkvoWQKcL6-NIHQ'); opacity: 0.4;"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent"></div>
+<div class="absolute inset-0 flex items-center px-8">
+<div>
+<span class="bg-primary text-black text-[10px] font-bold px-1.5 py-0.5 rounded mb-1 inline-block">SPONSORED</span>
+<h4 class="text-white font-display font-bold text-xl leading-tight">UPGRADE YOUR GEAR</h4>
+<p class="text-slate-300 text-xs mt-1">Visit the armory for the latest pilot suits and equipment.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-white/10 bg-background-dark mt-auto py-8">
+<div class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">smart_toy</span>
+<span class="font-display font-bold text-white tracking-widest uppercase">Mecha Stream</span>
+</div>
+<p class="text-slate-500 text-xs">© 2099 Global Alliance Sphere. All rights reserved.</p>
+</div>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Cookie Settings</a>
+</div>
+</div>
+</footer>
+
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mecha Stream - Movie Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f5c73d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#1B1B1B", /* Updated per user request #1B1B1B */
+                        "surface-dark": "#232323",
+                        "text-main": "#F8F8F8",
+                        "text-muted": "#9CA3AF"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                    clipPath: {
+                        'cyber-button': 'polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .clip-cyber {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .clip-cyber-button {
+            clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+        }
+        /* Custom scrollbar for cyber aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1B1B1B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f5c73d;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-text-main antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-[#1B1B1B]/95 backdrop-blur supports-[backdrop-filter]:bg-[#1B1B1B]/60">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group" href="#">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-[#1B1B1B]">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<span class="text-lg font-bold tracking-widest text-white group-hover:text-primary transition-colors">MECHA STREAM</span>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Movies</a>
+<a class="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Series</a>
+<a class="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Mecha</a>
+<a class="text-sm font-medium text-text-muted hover:text-white transition-colors" href="#">News</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="h-9 w-64 rounded bg-surface-dark border border-white/10 pl-10 pr-4 text-sm text-white placeholder-text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search database..." type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="hidden lg:flex h-9 items-center justify-center px-4 text-sm font-bold text-white hover:text-primary">
+                        Sign In
+                    </button>
+<button class="clip-cyber-button flex h-9 items-center justify-center bg-primary px-5 text-sm font-bold text-[#1B1B1B] hover:bg-white hover:text-[#1B1B1B] transition-all">
+                        JOIN FREE
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex justify-center py-8 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-7xl flex flex-col gap-8">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-sm text-text-muted">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Sci-Fi</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Gundam Hathaway</span>
+</nav>
+<!-- Main Content Area -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-4">
+<!-- Left Column: Poster & Action -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Poster with Cyber frame effect -->
+<div class="relative group w-full aspect-[2/3] rounded overflow-hidden border border-white/10 shadow-2xl shadow-black/50">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+<img alt="Gundam style giant robot standing in a futuristic city hangar" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" data-alt="Futuristic mecha robot poster art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE85myYNFD5lxft89guSoAXyoNywVsfAtjT4LDr9OkoCdgBnZKSv_Mf3ExVf063wNbOooU7zRdQSRKLbXUBzog1MMcFIzjvL-FwreCSrkkFYR5b1k4OII_3qtwah7jlLvw3WJNKjx0kk7udKMBOC2X4q06oHNumrSHI7MvllrGFvMrFcqfePXQcGEB7LhtyBOfWH7n6FGT_bXXr6K6mnU-S3PrUYeoMfyi5s9ctxKP0t1-dxV9Ev3t7NhGu7jhzRphEjU6XIS_F-W5"/>
+<div class="absolute bottom-4 left-4 z-20">
+<span class="px-2 py-1 bg-primary text-[#1B1B1B] text-xs font-bold uppercase tracking-wider">4K HDR</span>
+</div>
+</div>
+<!-- Cyber Button -->
+<button class="relative w-full group overflow-hidden" style="filter: drop-shadow(0 0 10px rgba(245, 199, 61, 0.3));">
+<div class="clip-cyber absolute inset-0 bg-primary translate-y-1 translate-x-1 opacity-50"></div>
+<div class="clip-cyber relative bg-primary hover:bg-white text-[#1B1B1B] h-14 flex items-center justify-center gap-3 transition-colors duration-300">
+<span class="material-symbols-outlined text-[28px]">play_circle</span>
+<span class="text-lg font-black tracking-widest uppercase">XEM PHIM</span>
+</div>
+</button>
+<div class="flex gap-2 justify-center">
+<button class="flex-1 py-3 border border-white/10 bg-surface-dark hover:border-primary/50 text-white rounded flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">add</span>
+<span class="text-xs font-bold uppercase tracking-wide">Watchlist</span>
+</button>
+<button class="flex-1 py-3 border border-white/10 bg-surface-dark hover:border-primary/50 text-white rounded flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-primary text-sm">share</span>
+<span class="text-xs font-bold uppercase tracking-wide">Share</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Details -->
+<div class="lg:col-span-8 flex flex-col">
+<!-- Title Section -->
+<div class="mb-8 border-l-4 border-primary pl-6">
+<h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2 uppercase">
+                            Gundam Hathaway
+                        </h1>
+<p class="text-xl text-primary font-medium tracking-wide">Mobile Suit Gundam: Hathaway's Flash</p>
+</div>
+<!-- Meta Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 bg-surface-dark/30 p-6 rounded border border-white/5">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">timelapse</span>
+<span class="text-xs font-bold uppercase tracking-wider">Status</span>
+</div>
+<span class="text-white font-medium">Completed</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">movie_filter</span>
+<span class="text-xs font-bold uppercase tracking-wider">Director</span>
+</div>
+<span class="text-white font-medium">Shukou Murase</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span class="text-xs font-bold uppercase tracking-wider">Runtime</span>
+</div>
+<span class="text-white font-medium">95 min</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span class="text-xs font-bold uppercase tracking-wider">Release</span>
+</div>
+<span class="text-white font-medium">2021</span>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px w-full bg-gradient-to-r from-primary/50 via-white/10 to-transparent mb-8"></div>
+<!-- Synopsis -->
+<div class="flex flex-col gap-4 mb-10">
+<h2 class="text-2xl font-bold text-white flex items-center gap-3">
+<span class="w-2 h-8 bg-primary block rounded-sm"></span>
+                            Nội dung phim (Synopsis)
+                        </h2>
+<div class="text-text-muted text-lg leading-relaxed space-y-4">
+<p>
+                                Twelve years after the Second Neo Zeon War, the peace of the Earth Sphere is disrupted by "Mafty", an anti-Earth Federation government organization. 
+                            </p>
+<p>
+                                Hathaway Noa, still haunted by his past actions, joins the terrorist organization Mafty and takes on the name Mafty Navue Erin. The organization is fighting a terrorist campaign against the Earth Federation government, and they eventually manage to acquire the prototype Xi Gundam, of which Hathaway becomes the pilot. Their goal: to assassinate high-ranking Federation officials to break the corrupt grip on humanity.
+                            </p>
+</div>
+</div>
+<!-- Cast & Crew / Additional Info (Chamfered Section) -->
+<div class="mt-auto">
+<div class="clip-cyber bg-surface-dark border border-white/5 p-6 md:p-8">
+<div class="flex flex-wrap gap-8 items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider">Genre</span>
+<div class="flex gap-2">
+<a class="text-white hover:text-primary transition-colors" href="#">Mecha</a>
+<span class="text-white/20">•</span>
+<a class="text-white hover:text-primary transition-colors" href="#">Sci-Fi</a>
+<span class="text-white/20">•</span>
+<a class="text-white hover:text-primary transition-colors" href="#">Action</a>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider">Studio</span>
+<span class="text-white font-medium">Sunrise</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider">Rating</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span class="text-white font-bold">8.4</span>
+<span class="text-text-muted text-sm">/ 10</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
