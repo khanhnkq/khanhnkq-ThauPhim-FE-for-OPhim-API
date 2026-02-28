@@ -69,7 +69,7 @@ export default async function Home() {
                 episode_current={movie.episode_current}
                 time={movie.time}
                 chamfer="tl-br"
-                className="min-w-[140px] sm:min-w-[170px] md:min-w-[190px] lg:min-w-[210px] shrink-0"
+                className="w-[140px] sm:w-[170px] md:w-[190px] lg:w-[210px] shrink-0"
               />
             ))}
           </div>
